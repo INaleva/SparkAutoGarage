@@ -1,0 +1,127 @@
+﻿@page
+@model SparkAuto.Pages.Cars.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+<h2 class="text-info py-2">Car record for customer</h2>
+<div class="container backgroundWhite">
+    <div class="card">
+        <div class="card-header bg-dark text-light ml-0 row container">
+            <div class="col-6">
+                <i class="fas fa-car"></i>
+            </div>
+            <div class="col-6 text-right">
+                @if(User.IsInRole(Utility.SD.AdminEndUser)){
+                    <a asp-page="/Users/Index" class="btn btn-sm btn-outline-info">Back to Users</a>
+                 }
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row" style="padding-right:40px; padding-top:20px;">
+                <div class="col-md-3">
+                    <p>
+                        <a asp-page="Create" asp-route-userId="@Model.CarAndCustomerVM.ApplicationUserObj.Id" class="btn btn-info form-control">
+                            <i class="fas fa-plus"></i>&nbsp; Add new Vehicle
+                        </a>
+                    </p>
+                </div>
+                <div class="col-md-6 offset-md-3">
+                    <div class="row pb-2">
+                        <div class="col-sm-4">
+                            <label asp-for="CarAndCustomerVM.ApplicationUserObj.Name"></label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input asp-for="CarAndCustomerVM.ApplicationUserObj.Name" disabled class=" form-control" />
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-sm-4">
+                            <label asp-for="CarAndCustomerVM.ApplicationUserObj.PhoneNumber"></label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input asp-for="CarAndCustomerVM.ApplicationUserObj.PhoneNumber" disabled class=" form-control" />
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-sm-4">
+                            <label asp-for="CarAndCustomerVM.ApplicationUserObj.Email"></label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input asp-for="CarAndCustomerVM.ApplicationUserObj.Email" disabled class=" form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if (Model.CarAndCustomerVM.Cars.Count() == 0)
+            {
+                <p>No cars found. Please add a car.</p>
+            }
+            else
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            @Html.DisplayNameFor(m => m.CarAndCustomerVM.Cars.FirstOrDefault().VIM)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m => m.CarAndCustomerVM.Cars.FirstOrDefault().Make)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m => m.CarAndCustomerVM.Cars.FirstOrDefault().Model)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m => m.CarAndCustomerVM.Cars.FirstOrDefault().Color)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(m => m.CarAndCustomerVM.Cars.FirstOrDefault().Kilometers)
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model.CarAndCustomerVM.Cars)
+                    {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => item.VIM)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Make)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Color)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Kilometers)
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            @if (User.IsInRole(Utility.SD.AdminEndUser))
+                            {
+                                <a title="Edit" class="btn btn-primary text-white" asp-page="Edit" asp-route-id="@item.Id">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+
+                                <a title="Delete" class="btn btn-danger text-white" asp-page="Delete" asp-route-id="@item.Id">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            }
+                        </div>
+                    </td>
+                </tr>
+                    }
+                </table>
+            }
+            
+
+
+        </div>
+    </div>
+</div>
+
