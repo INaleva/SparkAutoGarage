@@ -17,11 +17,11 @@ namespace SparkAuto.Email
             Options = emailOptions.Value;
         }
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
-        {
+        { 
             var client = new SendGridClient(Options.SendGridKey);
             var message = new SendGridMessage()
             {
-                From = new EmailAddress("admin@spark.com", "Spark Autp"),
+                From = new EmailAddress("admin@spark.com", "Spark Auto"),
                 Subject = subject,
                 PlainTextContent = htmlMessage,
                 HtmlContent = htmlMessage,
@@ -32,9 +32,9 @@ namespace SparkAuto.Email
             {
                 return client.SendEmailAsync(message);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.Write(e.ToString());
+
             }
             return null;
         }

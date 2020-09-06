@@ -85,13 +85,12 @@ namespace SparkAuto.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            if (User.Identity.IsAuthenticated && User.IsInRole(SD.CustomerEndUser))
+            if (User.IsInRole(SD.AdminEndUser))
             {
-                // Redirect to Home (since the user is already authenticated)
-                Response.Redirect("/Index");
+                ReturnUrl = returnUrl;
             }
-            ReturnUrl = returnUrl;
-                ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+           
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             
 
         }
@@ -138,28 +137,24 @@ namespace SparkAuto.Areas.Identity.Pages.Account
 
                         await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                             $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-                        return RedirectToPage("/Users/Index");
+
+                        if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                        {
+                            return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        }
+                        else
+                        {
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                            _logger.LogInformation("User created a new account with password.");
+                            return LocalRedirect(returnUrl);
+                        }
                     }
                     else {
                         await _userManager.AddToRoleAsync(user, SD.CustomerEndUser);
-                        return LocalRedirect(returnUrl);
-                    }
-
-                    await _userManager.AddToRoleAsync(user, SD.CustomerEndUser);
-
-                    _logger.LogInformation("User created a new account with password.");
-
-                    
-
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                    }
-                    else
-                    {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+
                     }
+
                 }
                 foreach (var error in result.Errors)
                 {
