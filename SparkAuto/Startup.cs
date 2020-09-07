@@ -49,8 +49,8 @@ namespace SparkAuto
 
             services.AddAuthentication().AddFacebook(fb =>
             {
-                fb.AppId = "3030141677108742";
-                fb.AppSecret = "2810b1cf94cd57c294cdbb7a1511bc49";
+                fb.AppId = "123";
+                fb.AppSecret = "123";
             });
 
 

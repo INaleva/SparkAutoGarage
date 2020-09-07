@@ -66,8 +66,10 @@
                             <p>
                                 @foreach (var provider in Model.ExternalLogins)
                                 {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
+                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="right" title="This is a demo website, Facebook secret key is removed for security purposes.">
+                                        <button  type="submit" class="btn btn-primary" name="provider" value="@provider.Name" style="pointer-events: none;" disabled>@provider.DisplayName</button>
+                                    </span>
+                                    }
                             </p>
                         </div>
                     </form>
@@ -77,6 +79,12 @@
     </div>
 </div>
 
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 }

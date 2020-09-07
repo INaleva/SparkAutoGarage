@@ -99,14 +99,16 @@
                     <td>
                         @Html.DisplayFor(m => item.Kilometers)
                     </td>
-                    <td></td>
+                    <td>
+
+                    </td>
                     <td>
                         <div class="btn-group" role="group">
                             @if (User.IsInRole(Utility.SD.AdminEndUser))
                             {
-                                <a title="Edit" class="btn btn-primary text-white" asp-page="Edit" asp-route-id="@item.Id">
-                                    <i class="fas fa-edit"></i>
-                                </a>
+                                        <a title="Edit" class="btn btn-primary text-white" asp-page="Edit" asp-route-id="@item.Id">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
 
                                 <a title="Delete" class="btn btn-danger text-white" asp-page="Delete" asp-route-id="@item.Id">
                                     <i class="fas fa-trash-alt"></i>

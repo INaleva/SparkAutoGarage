@@ -3,14 +3,32 @@ for details on configuring this project to bundle and minify static web assets. 
 
 
 .search-background {
-    background: url('/images//dust_scratches.png');
+    height: 100%;
+
+}
+#main {
 }
 
+    #main::after {
+        content: "";
+        background: url('../images/garage.jpg');
+        opacity: 0.5;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
 .backgroundWhite {
-    background-color:white;
-    padding:30px;
-    border-radius:10px;
-    margin-bottom:30px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
 }
 
 
@@ -78,9 +96,10 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
