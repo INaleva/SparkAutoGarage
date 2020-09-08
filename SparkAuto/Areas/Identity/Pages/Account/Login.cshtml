@@ -67,14 +67,28 @@
                                 @foreach (var provider in Model.ExternalLogins)
                                 {
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="right" title="This is a demo website, Facebook secret key is removed for security purposes.">
-                                        <button  type="submit" class="btn btn-primary" name="provider" value="@provider.Name" style="pointer-events: none;" disabled>@provider.DisplayName</button>
+                                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" style="pointer-events: none;" disabled>@provider.DisplayName</button>
                                     </span>
-                                    }
+                                }
                             </p>
                         </div>
                     </form>
                 }
             }
+            <div class="row">
+                <div class="col-md-8">
+                    <form method="POST">
+                        <div>
+                            <strong>For convenience, you can automatically login as admin to see features that are hidden from regular users. </strong>
+                        </div>
+                        <br />
+                        <div>
+                            <strong>Note that some of the CRUD features are turned off. </strong>
+                        </div>
+                        <button class="btn btn-warning form-control" type="submit" asp-page-handler="AdminLogin">Login as Admin</button>
+                    </form>            
+                </div>
+             </div>
         </section>
     </div>
 </div>

@@ -114,5 +114,13 @@ namespace SparkAuto.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
+
+        public async Task<IActionResult> OnPostAdminLogin(string returnUrl = null)
+        {
+            returnUrl = returnUrl ?? Url.Content("~/");
+            var result = await _signInManager.PasswordSignInAsync("admin@admin.com", "Admin123*", Input.RememberMe, lockoutOnFailure: false);
+            return LocalRedirect(returnUrl);
+
+        }
     }
 }

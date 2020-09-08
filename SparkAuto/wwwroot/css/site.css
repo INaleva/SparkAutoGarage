@@ -12,7 +12,7 @@ for details on configuring this project to bundle and minify static web assets. 
     #main::after {
         content: "";
         background: url('../images/garage.jpg');
-        opacity: 0.5;
+        opacity: 0.4;
         top: 0;
         left: 0;
         bottom: 0;
@@ -25,7 +25,7 @@ for details on configuring this project to bundle and minify static web assets. 
     }
 
 .backgroundWhite {
-    background-color: white;
+    background: url('../images/dust_scratches.png');
     padding: 30px;
     border-radius: 10px;
     margin-bottom: 30px;
