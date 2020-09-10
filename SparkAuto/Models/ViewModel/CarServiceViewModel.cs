@@ -12,6 +12,6 @@ namespace SparkAuto.Models.ViewModel
         public ServiceDetails ServiceDetails { get; set; }
 
         public List<ServiceShoppingCart> ServiceShoppingCart { get; set; }
-        public List<ServiceType> ServiceType { get; set; }
+        public List<ServiceType> ServiceTypesList { get; set; }
     }
 }
