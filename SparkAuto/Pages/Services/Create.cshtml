@@ -63,6 +63,55 @@
                             </div>
                         </div>
                     </div>
+
+                    <br />
+                    <div class="border container rounded p-2">
+                        <h3 class="text-info pb-2">Service Summary </h3>
+                        @if (Model.CarServiceVM.ServiceShoppingCart.Count == 0)
+                        {
+                            <p>Service Cart is Empty.</p>
+                        }
+                        else {
+                        <div class="row mt-3">
+                            <div class="col-7">
+                                <table class="table table-striped border">
+                                    <tr class="table-secondary">
+                                        <th class="col-6">
+                                            @Html.DisplayNameFor(m => Model.CarServiceVM.ServiceTypesList.FirstOrDefault().Name)
+                                        </th>
+                                        <th class="col-4">
+                                            @Html.DisplayNameFor(m => Model.CarServiceVM.ServiceTypesList.FirstOrDefault().Price)
+                                        </th>
+                                        <th class="col-2">
+
+                                        </th>
+                                    </tr>
+                                    @foreach (var item in Model.CarServiceVM.ServiceShoppingCart)
+                                    {
+                                       <tr>
+                                        <td class="col-6">
+                                            @Html.DisplayFor(m => item.ServiceType.Name)
+                                        </td>
+                                        <td class="col-4">
+                                            @Html.DisplayFor(m => item.ServiceType.Price)
+                                        </td>
+                                        <td class="col-2">
+                                            <button type="submit" asp-page-handler="RemoveFromCart" asp-route-serviceTypeId="@item.ServiceId" class="btn btn-danger form-control">
+                                                <i class="far fa-trash-alt"></i>
+                                            </button>
+                                        </td>
+                                       </tr>
+
+                                    }
+                                </table>
+                            </div>
+                            <div class="col-5">
+
+                            </div>
+                        </div>
+                        }
+
+                    </div>
                 </div>
             </form>
         </div>
