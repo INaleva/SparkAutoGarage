@@ -47,8 +47,8 @@ namespace SparkAuto
                 return NotFound();
             }
 
-            _db.ServiceType.Remove(ServiceType);
-            await _db.SaveChangesAsync();
+           // _db.ServiceType.Remove(ServiceType);
+           // await _db.SaveChangesAsync();
             return RedirectToPage("./Index");
         }
 

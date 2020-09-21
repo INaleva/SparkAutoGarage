@@ -111,7 +111,7 @@
                             <label asp-for="Input.IsAdmin"></label>
                         </div>
                         <div class="col-8">
-                            <input asp-for="Input.IsAdmin" class="form-control" />
+                            <input title="This is visible for admin user only." asp-for="Input.IsAdmin" class="form-control" />
                         </div>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-8">
-                        <button type="submit" class="btn btn-success for-control">Register</button>
+                        <button disabled type="submit" class="btn btn-success for-control">Register</button>
                     </div>
                 </div>
             </div>

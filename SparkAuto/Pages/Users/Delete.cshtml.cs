@@ -46,8 +46,8 @@ namespace SparkAuto.Pages.Users
         {
             var userInDb = await _db.Users.SingleOrDefaultAsync(u => u.Id == ApplicationUser.Id);
 
-            _db.Users.Remove(userInDb);
-            await _db.SaveChangesAsync();
+           // _db.Users.Remove(userInDb);
+           // await _db.SaveChangesAsync();
 
             return RedirectToPage("Index");
         }

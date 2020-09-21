@@ -13,7 +13,10 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand text-info" asp-area="" asp-page="/Index">Spark</a>
+                <a class="navbar-brand text-info" asp-area="" asp-page="/Index">
+                    <img src="~/images/car-engine.png" />
+                    <label class="text-info" style="cursor:pointer">Spark</label>
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -31,6 +34,12 @@
                         {
                             <li class="nav-item">
                                 <a class="nav-link " asp-area="" asp-page="/Users/Index">Users</a>
+                            </li>
+                        }
+                        @if (this.User.IsInRole(Utility.SD.CustomerEndUser))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link " asp-area="" asp-page="/Cars/Index">Cars</a>
                             </li>
                         }
 

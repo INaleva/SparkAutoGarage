@@ -15,13 +15,12 @@ namespace SparkAuto.Models
         [ForeignKey("ServiceHeaderId")]
         public virtual ServiceHeader ServiceHeader { get; set; }
 
-        [Display(Name="Service")]
+        [Display(Name = "Service")]
         public int ServiceTypeId { get; set; }
         [ForeignKey("ServiceTypeId")]
         public virtual ServiceType ServiceType { get; set; }
 
-        public double ServicPrice { get; set; }
+        public double ServicePrice { get; set; }
         public string ServiceName { get; set; }
-
     }
 }

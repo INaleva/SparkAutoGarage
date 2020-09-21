@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SparkAuto.Data;
 
 namespace SparkAuto.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200915071902_fixedSpellingErorr")]
+    partial class fixedSpellingErorr
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -231,12 +233,13 @@ namespace SparkAuto.Data.Migrations
                     b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Make")
+                    b.Property<string>("Kilometers")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Miles")
-                        .HasColumnType("float");
+                    b.Property<string>("Make")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Model")
                         .IsRequired()
@@ -248,9 +251,8 @@ namespace SparkAuto.Data.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("VIN")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("VIM")
+                        .HasColumnType("int");
 
                     b.Property<int>("Year")
                         .HasColumnType("int");
@@ -306,7 +308,7 @@ namespace SparkAuto.Data.Migrations
                     b.Property<string>("Details")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Miles")
+                    b.Property<double>("KM")
                         .HasColumnType("float");
 
                     b.Property<double>("TotalPrice")
@@ -329,6 +331,9 @@ namespace SparkAuto.Data.Migrations
                     b.Property<int>("CarId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ServiceId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ServiceTypeId")
                         .HasColumnType("int");
 
@@ -336,7 +341,7 @@ namespace SparkAuto.Data.Migrations
 
                     b.HasIndex("CarId");
 
-                    b.HasIndex("ServiceTypeId");
+                    b.HasIndex("ServiceId");
 
                     b.ToTable("ServiceShoppingCart");
                 });
@@ -347,6 +352,9 @@ namespace SparkAuto.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -457,7 +465,7 @@ namespace SparkAuto.Data.Migrations
 
             modelBuilder.Entity("SparkAuto.Models.ServiceHeader", b =>
                 {
-                    b.HasOne("SparkAuto.Models.Car", "Car")
+                    b.HasOne("SparkAuto.Models.Car", "car")
                         .WithMany()
                         .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -474,9 +482,7 @@ namespace SparkAuto.Data.Migrations
 
                     b.HasOne("SparkAuto.Models.ServiceType", "ServiceType")
                         .WithMany()
-                        .HasForeignKey("ServiceTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ServiceId");
                 });
 #pragma warning restore 612, 618
         }

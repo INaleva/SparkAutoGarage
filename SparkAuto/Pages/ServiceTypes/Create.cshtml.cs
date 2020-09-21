@@ -35,8 +35,8 @@ namespace SparkAuto
                 return Page();
             }
 
-            _db.ServiceType.Add(ServiceType);
-            await _db.SaveChangesAsync();
+           // _db.ServiceType.Add(ServiceType);
+           // await _db.SaveChangesAsync();
             
             return RedirectToPage("Index");
             

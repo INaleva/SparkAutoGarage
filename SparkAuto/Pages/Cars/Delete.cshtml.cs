@@ -52,9 +52,9 @@ namespace SparkAuto.Pages.Cars
             }
             var userId = Car.UserId;
 
-            _db.Car.Remove(Car);
-            await _db.SaveChangesAsync();
-            StatusMessage = "Car deleted successfully.";
+            //_db.Car.Remove(Car);
+            //await _db.SaveChangesAsync();
+            StatusMessage = "This feature is disabled";
             return RedirectToPage("./Index", new { userId });
         }
     }

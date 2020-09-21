@@ -13,7 +13,7 @@ using SparkAuto.Utility;
 
 namespace SparkAuto.Pages.Cars
 {
-    [Authorize(Roles = SD.AdminEndUser)]
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly ApplicationDbContext _db;
@@ -48,9 +48,9 @@ namespace SparkAuto.Pages.Cars
                 return Page();
             }
 
-            _db.Car.Add(Car);
-            await _db.SaveChangesAsync();
-            StatusMessage = "Car has been added successfully";
+          //  _db.Car.Add(Car);
+           // await _db.SaveChangesAsync();
+            StatusMessage = "This feature is disabled.";
             return RedirectToPage("Index", new { userId = Car.UserId});
 
         }

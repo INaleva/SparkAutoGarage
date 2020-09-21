@@ -50,12 +50,12 @@ namespace SparkAuto.Pages.Cars
                 return Page();
             }
 
-            _db.Attach(Car).State = EntityState.Modified;
+           // _db.Attach(Car).State = EntityState.Modified;
 
             try
             {
-                await _db.SaveChangesAsync();
-                StatusMessage = "Car updated successfully.";
+               // await _db.SaveChangesAsync();
+                StatusMessage = "This feature is disabled";
 
             }
             catch (DbUpdateConcurrencyException)

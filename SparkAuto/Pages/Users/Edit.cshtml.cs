@@ -81,7 +81,7 @@ namespace SparkAuto.Pages.Users
                         await _userManager.AddToRoleAsync(userInDb, SD.CustomerEndUser);
                     }
 
-                    await _db.SaveChangesAsync();
+                   // await _db.SaveChangesAsync();
                     return RedirectToPage("Index");
                 }
             }

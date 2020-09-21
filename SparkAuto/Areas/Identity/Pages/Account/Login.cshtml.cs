@@ -115,6 +115,7 @@ namespace SparkAuto.Areas.Identity.Pages.Account
             return Page();
         }
 
+        //manual login as admin for convinience
         public async Task<IActionResult> OnPostAdminLogin(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");

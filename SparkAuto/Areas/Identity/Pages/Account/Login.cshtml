@@ -66,9 +66,29 @@
                             <p>
                                 @foreach (var provider in Model.ExternalLogins)
                                 {
-                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="right" title="This is a demo website, Facebook secret key is removed for security purposes.">
-                                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" style="pointer-events: none;" disabled>@provider.DisplayName</button>
-                                    </span>
+                                    @if (provider.Name.ToLower().Equals("facebook"))
+                                    {
+                                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="right" title="This is a demo website, Facebook secret key is removed for security purposes.">
+                                            <button type="submit" class="btn loginBtn loginBtn-facebook" name="provider" value="@provider.Name" style="pointer-events: none;" disabled>@provider.DisplayName</button>
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        if (provider.Name.ToLower().Equals("google"))
+                                        {
+                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="right" title="This is a demo website, Facebook secret key is removed for security purposes.">
+                                                <button type="submit" class="btnloginBtn loginBtn-google" name="provider" value="@provider.Name" style="pointer-events: none;" disabled>@provider.DisplayName</button>
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="right" title="This is a demo website, Facebook secret key is removed for security purposes.">
+                                                <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" style="pointer-events: none;" disabled>@provider.DisplayName</button>
+                                            </span>
+                                        }
+                                    }
+
+
                                 }
                             </p>
                         </div>

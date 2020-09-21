@@ -13,22 +13,24 @@ namespace SparkAuto.Models
         public int Id { get; set; }
 
         [Required]
-        public string Make { get; set; }
+        public string VIN { get; set; }
 
         [Required]
-        public string Model { get; set; }
+        public string Make { get; set; }
         [Required]
-        public int VIM { get; set; }
+        public string Model { get; set; }
         public string Style { get; set; }
         [Required]
         public int Year { get; set; }
+
         [Required]
-        public string Kilometers { get; set; }
+        public double Miles { get; set; }
         public string Color { get; set; }
 
         public string UserId { get; set; }
 
         [ForeignKey("UserId")]
         public virtual ApplicationUser ApplicationUser { get; set; }
+
     }
 }

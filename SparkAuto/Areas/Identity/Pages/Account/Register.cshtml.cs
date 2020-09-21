@@ -99,68 +99,68 @@ namespace SparkAuto.Areas.Identity.Pages.Account
         {
  
 
-            returnUrl = returnUrl ?? Url.Content("~/");
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (ModelState.IsValid)
-            {
-                var user = new ApplicationUser { 
-                    UserName = Input.Email,
-                    Email = Input.Email,
-                    Name = Input.Name,
-                    Address = Input.Address,
-                    City = Input.City,
-                    PostalCode = Input.PostalCode,
-                    PhoneNumber = Input.PhoneNumber
-                };
-                var result = await _userManager.CreateAsync(user, Input.Password);
-                if (result.Succeeded)
-                {
-                    if (!await _roleManager.RoleExistsAsync(SD.AdminEndUser))
-                    {
-                        await _roleManager.CreateAsync(new IdentityRole(SD.AdminEndUser));
-                    }
-                    if (!await _roleManager.RoleExistsAsync(SD.CustomerEndUser))
-                    {
-                        await _roleManager.CreateAsync(new IdentityRole(SD.CustomerEndUser));
-                    }
+            //returnUrl = returnUrl ?? Url.Content("~/");
+            //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            //if (ModelState.IsValid)
+            //{
+            //    var user = new ApplicationUser { 
+            //        UserName = Input.Email,
+            //        Email = Input.Email,
+            //        Name = Input.Name,
+            //        Address = Input.Address,
+            //        City = Input.City,
+            //        PostalCode = Input.PostalCode,
+            //        PhoneNumber = Input.PhoneNumber
+            //    };
+            //    var result = await _userManager.CreateAsync(user, Input.Password);
+            //    if (result.Succeeded)
+            //    {
+            //        if (!await _roleManager.RoleExistsAsync(SD.AdminEndUser))
+            //        {
+            //            await _roleManager.CreateAsync(new IdentityRole(SD.AdminEndUser));
+            //        }
+            //        if (!await _roleManager.RoleExistsAsync(SD.CustomerEndUser))
+            //        {
+            //            await _roleManager.CreateAsync(new IdentityRole(SD.CustomerEndUser));
+            //        }
                     
-                    if(Input.IsAdmin)
-                    {
-                        await _userManager.AddToRoleAsync(user, SD.AdminEndUser);
-                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                        var callbackUrl = Url.Page(
-                            "/Account/ConfirmEmail",
-                            pageHandler: null,
-                            values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
-                            protocol: Request.Scheme);
+            //        if(Input.IsAdmin)
+            //        {
+            //            await _userManager.AddToRoleAsync(user, SD.AdminEndUser);
+            //            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            //            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+            //            var callbackUrl = Url.Page(
+            //                "/Account/ConfirmEmail",
+            //                pageHandler: null,
+            //                values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
+            //                protocol: Request.Scheme);
 
-                        await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+            //            await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+            //                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                        if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                        {
-                            return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                        }
-                        else
-                        {
-                            await _signInManager.SignInAsync(user, isPersistent: false);
-                            _logger.LogInformation("User created a new account with password.");
-                            return LocalRedirect(returnUrl);
-                        }
-                    }
-                    else {
-                        await _userManager.AddToRoleAsync(user, SD.CustomerEndUser);
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+            //            if (_userManager.Options.SignIn.RequireConfirmedAccount)
+            //            {
+            //                return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+            //            }
+            //            else
+            //            {
+            //                await _signInManager.SignInAsync(user, isPersistent: false);
+            //                _logger.LogInformation("User created a new account with password.");
+            //                return LocalRedirect(returnUrl);
+            //            }
+            //        }
+            //        else {
+            //            await _userManager.AddToRoleAsync(user, SD.CustomerEndUser);
+            //            await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    }
+            //        }
 
-                }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
-            }
+            //    }
+            //    foreach (var error in result.Errors)
+            //    {
+            //        ModelState.AddModelError(string.Empty, error.Description);
+            //    }
+            //}
 
             // If we got this far, something failed, redisplay form
             return Page();

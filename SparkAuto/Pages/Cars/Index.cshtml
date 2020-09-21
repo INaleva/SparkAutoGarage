@@ -64,7 +64,7 @@
                 <table class="table table-striped border">
                     <tr class="table-secondary">
                         <th>
-                            @Html.DisplayNameFor(m => m.CarAndCustomerVM.Cars.FirstOrDefault().VIM)
+                            @Html.DisplayNameFor(m => m.CarAndCustomerVM.Cars.FirstOrDefault().VIN)
                         </th>
                         <th>
                             @Html.DisplayNameFor(m => m.CarAndCustomerVM.Cars.FirstOrDefault().Make)
@@ -76,7 +76,7 @@
                             @Html.DisplayNameFor(m => m.CarAndCustomerVM.Cars.FirstOrDefault().Color)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(m => m.CarAndCustomerVM.Cars.FirstOrDefault().Kilometers)
+                            @Html.DisplayNameFor(m => m.CarAndCustomerVM.Cars.FirstOrDefault().Miles)
                         </th>
                         @if (User.IsInRole(Utility.SD.AdminEndUser))
                         {
@@ -88,7 +88,7 @@
                     {
                 <tr>
                     <td>
-                        @Html.DisplayFor(m => item.VIM)
+                        @Html.DisplayFor(m => item.VIN)
                     </td>
                     <td>
                         @Html.DisplayFor(m => item.Make)
@@ -100,7 +100,7 @@
                         @Html.DisplayFor(m => item.Color)
                     </td>
                     <td>
-                        @Html.DisplayFor(m => item.Kilometers)
+                        @Html.DisplayFor(m => item.Miles)
                     </td>
                     <td>
                         <a title="View service history" class="btn btn-secondary" asp-page="../Services/History" asp-route-carId="@item.Id">
