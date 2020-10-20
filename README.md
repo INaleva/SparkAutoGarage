@@ -4,7 +4,7 @@ This web application simulates a garage management system.
 
 Live Demonstration:
 
-https://sparkauto20200921105307.azurewebsites.net/
+~~https://sparkauto20200921105307.azurewebsites.net/~~ live demonstration is offline.
 
 Features:
 User Login/registration.
